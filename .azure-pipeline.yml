@@ -9,10 +9,10 @@ jobs:
     steps:
       - script: |
           cmake . -Bbuild -DCMAKE_BUILD_TYPE=Release
-          displayName: 'cmake'
+        displayName: 'cmake'
       - script: |
           cd build && make -j
-          displayName: 'make'
+        displayName: 'make'
 
   - job: Windows
     timeoutInMinutes: 0
