@@ -1,0 +1,25 @@
+jobs:
+- job: Linux
+    timeoutInMinutes: 0
+    pool:
+      vmImage: 'Ubuntu-16.04'
+    steps:
+      - script: |
+          cmake . -Bbuild -DCMAKE_BUILD_TYPE=Release
+          displayName: 'cmake'
+      - script: |
+          cd build && make -j
+          displayName: 'make'
+
+- job: Windows
+    timeoutInMinutes: 0
+    pool:
+      vmImage: 'vs2017-win2016'
+    steps:
+    - script: cmake . -Bbuild -G "Visual Studio 15 2017" -A x64 -DCMAKE_BUILD_TYPE=Release
+    - task: MSBuild@1
+      inputs:
+        solution: 'build\dl_labs.sln'
+        msbuildArchitecture: 'x64'
+        configuration: 'Release'
+        clean: true
