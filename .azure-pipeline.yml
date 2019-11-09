@@ -1,5 +1,8 @@
+trigger:
+- master
+
 jobs:
-- job: Linux
+  - job: Linux
     timeoutInMinutes: 0
     pool:
       vmImage: 'Ubuntu-16.04'
@@ -11,7 +14,7 @@ jobs:
           cd build && make -j
           displayName: 'make'
 
-- job: Windows
+  - job: Windows
     timeoutInMinutes: 0
     pool:
       vmImage: 'vs2017-win2016'
